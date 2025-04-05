@@ -15,6 +15,7 @@ function App() {
     headers: {
       "Content-Type": "application/json"
     },
+
     body: JSON.stringify({
       contents: [{ role: "user", parts: [{ text:`email : ${x} . write summary of email above`}] }]
     })
@@ -50,7 +51,7 @@ function App() {
         }]
       })
     });
-  
+    
     const data = await res.json();
   
     if (data?.candidates?.length > 0) {

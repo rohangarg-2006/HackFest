@@ -10,10 +10,9 @@ const cors=require('cors');
 const users=require('./Models/user')
 
 let temp=201;
-
 app.get('/',async(req, res)=>{
     let m=new users();
-    m.name="Robin";
+    m.name="sfadgds";
     m.phone=872687235;
     m.email=`${m.name}${temp}@cucie.com`;
     temp++;
