@@ -9,7 +9,7 @@ const cors=require('cors');
 
 const users=require('./Models/user')
 
-let temp=200;
+let temp=201;
 
 app.get('/',async(req, res)=>{
     let m=new users();
