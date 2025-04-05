@@ -2,8 +2,6 @@ import React, { useState, useContext } from 'react';
 import { Mycontext } from '../context/context';
 import { useNavigate } from 'react-router-dom';
 
-// Inside your component
-
 const LoginForm = () => {
   const [formData, setFormData] = useState({
     email: '',
@@ -12,6 +10,7 @@ const LoginForm = () => {
 
   const { updateUser } = useContext(Mycontext);
   const [submittedData, setSubmittedData] = useState(null);
+  const navigate = useNavigate(); // ✅ Added this line
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -24,29 +23,29 @@ const LoginForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log('Login Data:', formData);
-  
+
     try {
       const response = await fetch('http://localhost:3000/login', {
         method: 'POST',
         body: JSON.stringify(formData),
         headers: { 'Content-Type': 'application/json' }
       });
-  
+
       const user = await response.json();
-  
+
       if (!response.ok || !user || !user.name) {
         console.error('Login failed:', user);
         alert("Invalid email or password!");
         return;
       }
-  
+
       updateUser(user);
       setSubmittedData(formData);
       setFormData({ email: '', password: '' });
-  
+
       console.log('Logged in User:', user);
-  
-      navigate('/');
+
+      navigate('/'); // ✅ This now works because useNavigate is initialized
     } catch (error) {
       console.error('Error during login:', error);
       alert("Something went wrong. Try again.");

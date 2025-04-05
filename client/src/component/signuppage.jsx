@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { Mycontext } from '../context/context';
+import { useNavigate } from 'react-router-dom'; // ✅ Import navigate
 
 const SignupForm = () => {
   const [formData, setFormData] = useState({
@@ -8,9 +9,9 @@ const SignupForm = () => {
     password: ''
   });
 
-  const { user, updateUser } = useContext(Mycontext); // Corrected function name
-
+  const { user, updateUser } = useContext(Mycontext);
   const [submittedData, setSubmittedData] = useState(null);
+  const navigate = useNavigate(); // ✅ Initialize navigate
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -33,13 +34,22 @@ const SignupForm = () => {
 
       const findedone = await response.json();
 
+      if (!response.ok || !findedone || !findedone.name) {
+        console.error('Signup failed:', findedone);
+        alert("Signup failed. Please try again.");
+        return;
+      }
+
       updateUser(findedone);
       console.log('Updated User:', findedone);
 
       setSubmittedData(formData);
       setFormData({ name: '', phone: '', password: '' });
+
+      navigate('/'); // ✅ Redirect to home on success
     } catch (error) {
       console.error('Error during signup:', error);
+      alert("Something went wrong during signup.");
     }
   };
 
