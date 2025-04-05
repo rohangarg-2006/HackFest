@@ -30,7 +30,7 @@ function App() {
         const aiOutput = data.candidates[0]?.content?.parts[0]?.text;
         updsummary(aiOutput)
       } else {
-        console.log("No response from AI.");
+        console.log("No response from AI");
       }
     })
   }
