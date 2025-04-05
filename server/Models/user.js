@@ -6,12 +6,15 @@ const userlist=new mongoose.Schema({
     name:String,
     phone: Number,
     email:String,
+    password:String,
     sent: Array,
     received: Array,
     all: Array,
     professional: Array,
     spam: Array,
-    personal: Array
+    personal: Array,
+    draft: Array,
+    Starred:Array
 })
 
 module.exports = db.model("users", userlist);
