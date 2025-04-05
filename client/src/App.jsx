@@ -158,7 +158,6 @@ function App() {
   return (
     <>
 
-<h1>Email platform</h1>
       <input type="text" value={a} onChange={(e)=>{b(e.target.value)}}/>
       <h2 id='txt'></h2>
 
