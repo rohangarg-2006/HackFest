@@ -4,7 +4,6 @@ import { useContext } from "react";
 
 function useOutsideClick(ref, callback) {
 
-  const {user}=useContext(Mycontext)
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -59,7 +58,7 @@ function ProfileDropdown({ onClose, email }) {
       </div>
       <div className="text-center mb-4">
         <div className="text-xl font-semibold text-gray-800">
-          Hi, {user.email.charAt(0).toUpperCase()}!
+          Hi,hello!
         </div>
         <button className="mt-2 bg-white border border-blue-600 text-blue-600 px-4 py-1 rounded-full hover:bg-blue-50 transition">
           Manage your Google Account
