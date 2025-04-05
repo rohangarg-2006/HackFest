@@ -120,10 +120,9 @@ function Navbar({ onMenuClick }) {
 
   const tabs = [
     { name: "Primary", path: "/" },
-    { name: "Personal", path: "/personal", count: "83", color: "green" },
-    { name: "Professional", path: "/prof", count: "2", color: "blue" },
-    { name: "Spam", path: "/spam", count: "5", color: "orange" },
-    { name: "Others", path: "/others" },
+    { name: "Personal", path: "/personal", count: "", color: "green" },
+    { name: "Professional", path: "/prof", count: "", color: "blue" },
+    { name: "Spam", path: "/spam", count: "", color: "orange" },
   ];
 
   return (
@@ -205,7 +204,7 @@ function Navbar({ onMenuClick }) {
             <li
               key={tab.name}
               onClick={() => navigate(tab.path)}
-              className="group flex items-center border-b-4 border-transparent text-gray-600 py-3 hover:text-blue-600 hover:border-blue-300 cursor-pointer transition"
+              className="group flex items-center border-b-4 font-bold  p-4 rounded-xl border-transparent text-gray-600 py-3 hover:text-blue-600 hover:border-blue-300 cursor-pointer transition"
             >
               <span>{tab.name}</span>
               {tab.count && (
