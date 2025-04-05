@@ -223,6 +223,11 @@ import Inbox from './component/inbox'
 import EmailDetail from './component/Emaildetail'
 import SignupForm from './component/signuppage'
 import { Userdetail } from './context/context'
+import LoginForm from './component/login'
+import Spam from './component/spam'
+import Personal from './component/personal'
+import Proffess from './component/Proffessional'
+import Sent from './component/sent'
 function App() {
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -242,6 +247,37 @@ function App() {
 
 
     <Route path="/signup" element={<SignupForm/>} />
+    <Route path="/login" element={<LoginForm/>} />
+
+    {/* spam route */}
+    <Route path="/spam" element={<><div className="flex h-screen">
+      <Home isOpen={true} onSelect={() => {}} />
+      <Spam />
+     </div>
+    <EmailDetail/></> } />
+
+    {/* professional route */}
+    <Route path="/profess" element={<><div className="flex h-screen">
+      <Home isOpen={true} onSelect={() => {}} />
+      <Proffess/>
+     </div>
+    <EmailDetail/></> } />
+
+    {/* personal route */}
+    <Route path="/personal" element={<><div className="flex h-screen">
+      <Home isOpen={true} onSelect={() => {}} />
+      <Personal />
+     </div>
+    <EmailDetail/></> } />
+
+    {/* personal sent */}
+    <Route path="/sent" element={<><div className="flex h-screen">
+      <Home isOpen={true} onSelect={() => {}} />
+      <Sent />
+     </div>
+    <EmailDetail/></> } />
+
+
 
    
 </Routes>

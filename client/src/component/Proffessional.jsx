@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext } from "react";
 import { Mycontext } from "../context/context";
 
-function Inbox() {
+function Proffess() {
   const { user } = useContext(Mycontext);
   const [emails, setEmails] = useState([]);
   const [selectedEmail, setSelectedEmail] = useState(null);
@@ -53,7 +53,7 @@ function Inbox() {
   useEffect(() => {
     async function fetchInbox() {
       try {
-        const response = await fetch("http://localhost:3000/fetchinbox", {
+        const response = await fetch("http://localhost:3000/fetchprofess", {
           method: "POST",
           body: JSON.stringify({ name: user.name }),
           headers: { "Content-Type": "application/json" },
@@ -155,4 +155,4 @@ function Inbox() {
   );
 }
 
-export default Inbox;
+export default Proffess;

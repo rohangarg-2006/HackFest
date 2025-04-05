@@ -22,6 +22,19 @@ app.post('/signup',async(req, res)=>{
     res.send(x)
 })
 
+app.post('/login', async (req, res) => {
+  const { email, password } = req.body;
+
+  const user = await users.findOne({ email });
+
+  if (!user || user.password !== password) {
+    return res.status(401).json({ error: "Invalid email or password" });
+  }
+
+  res.json(user);
+});
+
+
 
 app.post('/fetchinbox', async (req, res) => {
   const name = req.body.name;
@@ -33,7 +46,59 @@ app.post('/fetchinbox', async (req, res) => {
   if (!user) {
     return res.status(404).send({ error: "User not found" });
   }
-  res.send(user.all);
+  res.send(user.received);
+});
+
+app.post('/fetchspam', async (req, res) => {
+  const name = req.body.name;
+  if (!name) {
+    return res.status(400).send({ error: "Name is required" });
+  }
+
+  let user = await users.findOne({ name: name });
+  if (!user) {
+    return res.status(404).send({ error: "User not found" });
+  }
+  res.send(user.spam);
+});
+
+app.post('/fetchpersonal', async (req, res) => {
+  const name = req.body.name;
+  if (!name) {
+    return res.status(400).send({ error: "Name is required" });
+  }
+
+  let user = await users.findOne({ name: name });
+  if (!user) {
+    return res.status(404).send({ error: "User not found" });
+  }
+  res.send(user.personal);
+});
+
+app.post('/fetchprofess', async (req, res) => {
+  const name = req.body.name;
+  if (!name) {
+    return res.status(400).send({ error: "Name is required" });
+  }
+
+  let user = await users.findOne({ name: name });
+  if (!user) {
+    return res.status(404).send({ error: "User not found" });
+  }
+  res.send(user.professional);
+});
+
+app.post('/fetchsent', async (req, res) => {
+  const name = req.body.name;
+  if (!name) {
+    return res.status(400).send({ error: "Name is required" });
+  }
+
+  let user = await users.findOne({ name: name });
+  if (!user) {
+    return res.status(404).send({ error: "User not found" });
+  }
+  res.send(user.sent);
 });
 
   async function checktype(x){
@@ -67,24 +132,30 @@ app.post('/fetchinbox', async (req, res) => {
     console.log(result);
   }
 
-app.get('/send', async (req, res) => {
+app.post('/send', async (req, res) => {
+
+        const now = new Date();
+        const d = now.toLocaleDateString();
+        const t = now.toLocaleTimeString();
+         
+
       let mail = {
-        sender:"robin",
-        reciever:"darwin",
-        subject:"hello",
-        message:"how are you",
-        date:"10",
-        time:"4687462"
-        
+        sender:req.body.sender,
+        reciever:req.body.reciever,
+        subject:req.body.subject,
+        message:req.body.messageBody,
+        date:d,
+        time:t
       };
 
-      let x = await users.findOne({name:"robin" });
-      let y = await users.findOne({name:"darwin"});
+      let x = await users.findOne({email:req.body.sender});
+      let y = await users.findOne({email:req.body.reciever});
   
       if (!x || !y) {
         return res.status(404).json({ error: "Sender or receiver not found" });
       }
   
+      y.all.push(mail);
       x.sent.push(mail);
       y.received.push(mail);
 

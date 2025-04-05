@@ -82,7 +82,7 @@ function Home({ isOpen, onSelect }) {
           </button>
 
           <button
-            onClick={() => onSelect("sent")}
+            onClick={() =>window.open('/sent','_self')}
             className="flex items-center w-full px-3 py-2 text-gray-700 rounded-md hover:bg-gray-100"
           >
             <svg

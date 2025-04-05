@@ -1,13 +1,14 @@
 import { useEffect, useState, useContext } from "react";
 import { Mycontext } from "../context/context";
 
-function Inbox() {
+function Sent() {
   const { user } = useContext(Mycontext);
   const [emails, setEmails] = useState([]);
   const [selectedEmail, setSelectedEmail] = useState(null);
   const [summaryData, setSummaryData] = useState(null);
   const [loadingSummary, setLoadingSummary] = useState(false);
 
+  // Function to summarize message using Gemini API
   async function summarize(message) {
     try {
       const res = await fetch(
@@ -38,6 +39,7 @@ function Inbox() {
     }
   }
 
+  // Handle click on summary button
   const handleSummary = async (email) => {
     setLoadingSummary(true);
     const summary = await summarize(email.message);
@@ -53,7 +55,7 @@ function Inbox() {
   useEffect(() => {
     async function fetchInbox() {
       try {
-        const response = await fetch("http://localhost:3000/fetchinbox", {
+        const response = await fetch("http://localhost:3000/fetchsent", {
           method: "POST",
           body: JSON.stringify({ name: user.name }),
           headers: { "Content-Type": "application/json" },
@@ -155,4 +157,4 @@ function Inbox() {
   );
 }
 
-export default Inbox;
+export default Sent;

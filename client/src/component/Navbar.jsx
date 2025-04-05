@@ -1,7 +1,11 @@
 import React, { useState, useRef, useEffect } from "react";
+import { Mycontext } from "../context/context";
+import { useContext } from "react";
 
-// Hook to detect clicks outside a component
 function useOutsideClick(ref, callback) {
+
+  const {user}=useContext(Mycontext)
+
   useEffect(() => {
     function handleClickOutside(event) {
       if (ref.current && !ref.current.contains(event.target)) {
@@ -55,7 +59,7 @@ function ProfileDropdown({ onClose, email }) {
       </div>
       <div className="text-center mb-4">
         <div className="text-xl font-semibold text-gray-800">
-          Hi, {email.charAt(0).toUpperCase()}!
+          Hi, {user.email.charAt(0).toUpperCase()}!
         </div>
         <button className="mt-2 bg-white border border-blue-600 text-blue-600 px-4 py-1 rounded-full hover:bg-blue-50 transition">
           Manage your Google Account
@@ -196,7 +200,7 @@ function Navbar({ onMenuClick }) {
       <div className="bg-white px-4 border-b border-gray-200">
         <ul className="flex space-x-10">
           {/* Primary tab */}
-          <li className="flex items-center border-b-4 border-blue-600 text-blue-600 py-3 font-medium">
+          <li onClick={()=>{window.open('/', '_self')}} className="flex items-center border-b-4 border-blue-600 text-blue-600 py-3 font-medium">
             <svg
               className="h-5 w-5 mr-2"
               fill="none"
@@ -212,7 +216,7 @@ function Navbar({ onMenuClick }) {
             <span>Primary</span>
           </li>
           {/* Personal tab */}
-          <li className="group flex items-center border-b-4 border-transparent text-gray-600 py-3 hover:text-gray-800 hover:border-blue-300 cursor-pointer">
+          <li onClick={()=>{window.open('/personal', '_self')}} className="group flex items-center border-b-4 border-transparent text-gray-600 py-3 hover:text-gray-800 hover:border-blue-300 cursor-pointer">
             <svg
               className="h-5 w-5 mr-2 text-gray-500 group-hover:text-gray-700"
               fill="none"
@@ -231,7 +235,7 @@ function Navbar({ onMenuClick }) {
             </span>
           </li>
           {/* Professional tab */}
-          <li className="group flex items-center border-b-4 border-transparent text-gray-600 py-3 hover:text-gray-800 hover:border-blue-300 cursor-pointer">
+          <li onClick={() => window.open('/proffess', '_self')} className="group flex items-center border-b-4 border-transparent text-gray-600 py-3 hover:text-gray-800 hover:border-blue-300 cursor-pointer">
             <svg
               className="h-5 w-5 mr-2 text-gray-500 group-hover:text-gray-700"
               fill="none"
@@ -251,7 +255,7 @@ function Navbar({ onMenuClick }) {
             </span>
           </li>
           {/* Spam tab */}
-          <li className="group flex items-center border-b-4 border-transparent text-gray-600 py-3 hover:text-gray-800 hover:border-blue-300 cursor-pointer">
+          <li onClick={()=>{window.open('/spam', '_self')}} className="group flex items-center border-b-4 border-transparent text-gray-600 py-3 hover:text-gray-800 hover:border-blue-300 cursor-pointer">
             <svg
               className="h-5 w-5 mr-2 text-gray-500 group-hover:text-gray-700"
               fill="none"
