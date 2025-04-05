@@ -45,7 +45,7 @@ function Home({ isOpen, onSelect }) {
 
           <nav className="space-y-1">
             <button
-              onClick={() =>{window.open('_self','/');}}
+              onClick={() =>{window.open('/','_self');}}
               className="flex items-center w-full px-3 py-2 text-gray-700 rounded-md hover:bg-gray-100"
             >
               <svg

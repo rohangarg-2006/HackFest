@@ -226,7 +226,7 @@ import { Userdetail } from './context/context'
 import LoginForm from './component/login'
 import Spam from './component/spam'
 import Personal from './component/personal'
-import Proffess from './component/Proffessional'
+import Prof from './component/Proffessional'
 import Sent from './component/sent'
 function App() {
 
@@ -257,9 +257,9 @@ function App() {
     <EmailDetail/></> } />
 
     {/* professional route */}
-    <Route path="/profess" element={<><div className="flex h-screen">
+    <Route path="/prof" element={<><div className="flex h-screen">
       <Home isOpen={true} onSelect={() => {}} />
-      <Proffess/>
+      <Prof/>
      </div>
     <EmailDetail/></> } />
 

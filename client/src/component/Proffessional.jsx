@@ -1,12 +1,14 @@
 import { useEffect, useState, useContext } from "react";
 import { Mycontext } from "../context/context";
 
-function Proffess() {
+function Prof() {
   const { user } = useContext(Mycontext);
   const [emails, setEmails] = useState([]);
   const [selectedEmail, setSelectedEmail] = useState(null);
   const [summaryData, setSummaryData] = useState(null);
   const [loadingSummary, setLoadingSummary] = useState(false);
+  const [autoReplyData, setAutoReplyData] = useState(null);
+  const [copied, setCopied] = useState(false);
 
   async function summarize(message) {
     try {
@@ -49,11 +51,47 @@ function Proffess() {
     setLoadingSummary(false);
   };
 
-  // Fetch inbox emails
+  async function autoreply(x) {
+    const res = await fetch("https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyDeTk6G1d1YvDT-QdURXJEz_iAuWZfFi_s", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        contents: [{
+          role: "user",
+          parts: [{
+            text: `email : ${x} . generate one best production level reply, just subject and body.`
+          }]
+        }]
+      })
+    });
+
+    const data = await res.json();
+
+    if (data?.candidates?.length > 0) {
+      return data.candidates[0]?.content?.parts[0]?.text;
+    } else {
+      console.log("No response from AI.");
+      return null;
+    }
+  }
+
+  async function finalautoreply(email) {
+    const result = await autoreply(email.message);
+    if (result) {
+      setAutoReplyData({
+        replyText: result,
+        subject: email.subject,
+        sender: email.sender,
+      });
+    }
+  }
+
   useEffect(() => {
     async function fetchInbox() {
       try {
-        const response = await fetch("http://localhost:3000/fetchprofess", {
+        const response = await fetch("http://localhost:3000/fetchprof", {
           method: "POST",
           body: JSON.stringify({ name: user.name }),
           headers: { "Content-Type": "application/json" },
@@ -96,6 +134,46 @@ function Proffess() {
         </div>
       )}
 
+      {/* ✉️ Auto Reply Popup */}
+      {autoReplyData && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40">
+          <div className="bg-white rounded-2xl shadow-lg p-6 w-11/12 max-w-md relative">
+            <button
+              onClick={() => setAutoReplyData(null)}
+              className="absolute top-2 right-2 text-gray-500 hover:text-gray-800 text-xl font-bold"
+            >
+              ×
+            </button>
+            <h2 className="text-xl font-bold mb-2 text-gray-700">
+              Auto Reply for: {autoReplyData.subject}
+            </h2>
+            <p className="text-sm mb-1 text-gray-600">To: {autoReplyData.sender}</p>
+            <hr className="my-2" />
+            <pre className="text-gray-800 whitespace-pre-wrap mb-4">{autoReplyData.replyText}</pre>
+
+            <div className="flex items-center gap-3">
+              <button
+                onClick={async () => {
+                  try {
+                    await navigator.clipboard.writeText(autoReplyData.replyText);
+                    setCopied(true);
+                    setTimeout(() => setCopied(false), 2000);
+                  } catch (err) {
+                    console.error("Failed to copy:", err);
+                  }
+                }}
+                className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded"
+              >
+                Copy
+              </button>
+              {copied && (
+                <span className="text-green-600 text-sm font-semibold">Copied!</span>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* 📥 Email Display */}
       {selectedEmail ? (
         <div className="p-4">
@@ -119,7 +197,10 @@ function Proffess() {
               >
                 {loadingSummary ? "Summarizing..." : "Summary"}
               </button>
-              <button className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded">
+              <button
+                onClick={() => finalautoreply(selectedEmail)}
+                className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded"
+              >
                 Auto Reply
               </button>
             </div>
@@ -155,4 +236,4 @@ function Proffess() {
   );
 }
 
-export default Proffess;
+export default Prof;

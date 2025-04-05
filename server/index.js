@@ -75,7 +75,7 @@ app.post('/fetchpersonal', async (req, res) => {
   res.send(user.personal);
 });
 
-app.post('/fetchprofess', async (req, res) => {
+app.post('/fetchprof', async (req, res) => {
   const name = req.body.name;
   if (!name) {
     return res.status(400).send({ error: "Name is required" });

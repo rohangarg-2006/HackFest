@@ -234,7 +234,7 @@ function Navbar({ onMenuClick }) {
             </span>
           </li>
           {/* Professional tab */}
-          <li onClick={() => window.open('/proffess', '_self')} className="group flex items-center border-b-4 border-transparent text-gray-600 py-3 hover:text-gray-800 hover:border-blue-300 cursor-pointer">
+          <li onClick={() => window.open('/prof', '_self')} className="group flex items-center border-b-4 border-transparent text-gray-600 py-3 hover:text-gray-800 hover:border-blue-300 cursor-pointer">
             <svg
               className="h-5 w-5 mr-2 text-gray-500 group-hover:text-gray-700"
               fill="none"
