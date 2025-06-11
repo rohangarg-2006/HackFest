@@ -1,128 +1,147 @@
-Go Flow Mail – AI-Powered Email & Chat Application
-Go Flow Mail is an educational and productive full-stack web application that mimics a modern email client, enhanced with a real-time AI assistant. Built with React, Node.js, and Google Gemini AI, this project showcases your ability to integrate real-world features like inbox navigation, message composition, user authentication, and AI-based chatting — all under a polished, responsive UI.
+# Go Flow Mail – AI-Powered Email & Chat Application
 
-This app is ideal to present in interviews or showcase in your professional portfolio.
+**Go Flow Mail** is an educational and productive full-stack web application that simulates a modern email client, enhanced with a real-time **AI assistant**. Built using **React**, **Node.js**, and **Google Gemini AI**, this project demonstrates your ability to integrate full-stack development with real-time AI features — including email folder navigation, message composition, user authentication, and a chatbot — all wrapped in a clean, responsive UI.
 
-📌 Project Overview
-Go Flow Mail is a functional simulation of an email client, combined with an AI chatbot. Users can sign up, log in, and manage folders such as Inbox, Starred, Sent, Drafts, and Spam. One of the standout features is the real-time chat powered by Google Gemini API, allowing the user to interact with an intelligent assistant directly on the dashboard.
+This app is ideal for showcasing in interviews, tech portfolios, or as a hackathon submission.
 
-This project not only reflects frontend/backend proficiency but also illustrates your ability to build usable, production-inspired interfaces.
+---
 
-✅ Features
-🔐 User Authentication – Signup, login, logout using Express backend and session/token management.
+## 📌 Project Overview
 
-📥 Email Folder UI – Functional navigation for Inbox, Sent, Starred, Drafts, and Spam.
+Go Flow Mail mimics a feature-rich email client with integrated AI capabilities. Registered users can **sign up, log in**, and manage their emails under folders like **Inbox, Starred, Sent, Drafts**, and **Spam**. A standout feature is the embedded **AI chatbot**, powered by **Google Gemini**, which can answer user queries live on the dashboard.
 
-📝 Compose Message Modal – Write and “send” messages (simulation mode).
+This project bridges practical frontend/backend skills with AI innovation — perfect for demonstrating hands-on knowledge of modern web stacks and cloud APIs.
 
-🧠 AI Chat Assistant – Google Gemini-powered chatbot for live Q&A.
+---
 
-📱 Fully Responsive UI – Built with Tailwind CSS.
+## ✅ Features
 
-🧭 Side Navigation Bar – Smooth navigation with React Router & clean structure.
+- 🔐 **User Authentication** – Secure signup, login, and logout using Express.js and session/token handling.
+- 📥 **Folder Navigation** – Functional mailbox UI including Inbox, Sent, Starred, Drafts, and Spam.
+- 📝 **Message Composition** – Compose and simulate sending emails using a clean modal interface.
+- 🤖 **AI Chat Assistant** – Integrated chatbot powered by Google Gemini for interactive Q&A.
+- 🌐 **Global State Handling** – User state managed via React Context API.
+- 🧭 **Responsive Sidebar Navigation** – Intuitive layout built with Tailwind CSS and React Router.
+- 💬 **Real-Time AI Chat** – Prompts receive intelligent responses via fetch requests to Gemini API.
+- 📱 **Mobile-Friendly UI** – Fully responsive interface for all screen sizes.
 
-🌐 React Context API – Manages user state globally.
+---
 
-🔄 Real-Time Chat Prompts – User prompts generate AI responses within seconds.
+## 🧰 Technologies Used
 
-🧰 Technologies Used
-🖥 Frontend
-React.js (with Vite)
+### 🖥 Frontend
+- React.js (with Vite)
+- React Router DOM
+- React Context API
+- Tailwind CSS
 
-React Router DOM
+### ⚙ Backend
+- Node.js
+- Express.js
+- Mongoose (MongoDB-ready user model)
 
-React Context API
+### 🤖 AI Integration
+- Google Generative Language API (Gemini)
+- Real-time fetch integration from frontend
 
-Tailwind CSS
+### 🔧 Tools
+- Git & GitHub
+- npm / Node.js
+- VS Code
 
-⚙ Backend
-Node.js + Express.js
+---
 
-Mongoose (MongoDB-ready user model)
+## 🚀 Installation and Setup
 
-🤖 AI Integration
-Google Generative Language API (Gemini)
+To run Go Flow Mail locally:
 
-Real-time AI fetch requests from React frontend
-
-📦 Tools
-Git, GitHub, npm, VS Code
-
-🚀 Getting Started
-1. Clone the Repo
-bash
-Copy
-Edit
+### 1. Clone the Repository
+```bash
 git clone https://github.com/rohangarg-2006/HackFest.git
 cd HackFest
-2. Start Backend Server
-bash
+```
+2. Setup and Start Backend
+  ```bash
 Copy
 Edit
 cd server
 npm install
 node index.js
-3. Start Frontend (React)
-bash
+The backend server will typically run on http://localhost:5000.
+```
+4. Setup and Start Frontend
+```bash
 Copy
 Edit
 cd client
 npm install
 npm run dev
-Now open http://localhost:5173 in your browser.
+The frontend will run on http://localhost:5173 (Vite default).
+```
 
-💡 How to Use
-Sign Up / Log In: Create an account using the signup form.
+💡 Usage Guide
+Sign Up / Login: Users start by creating a new account or logging in.
 
-Navigate Folders: Switch between Inbox, Starred, Sent, Drafts, and Spam.
+Navigate Folders: Use the sidebar to explore folders like Inbox, Sent, Starred, Drafts, and Spam.
 
-Compose Emails: Click the Compose (✉️) button to write a new message.
+View Messages: Click on messages to view simulated content (placeholder logic in place).
 
-Use AI Chat: In the AI panel, type any question and let Gemini answer.
+Compose Emails: Use the ✉️ icon to open a modal and simulate sending a message.
 
-Log Out: Use the profile icon to sign out securely.
+AI Chat: Use the chatbot at the side or bottom of the dashboard to ask questions and receive AI-powered responses.
+
+Responsive Layout: Resize your browser or use mobile to see responsive behavior.
 
 📁 Project Structure
-bash
+```bash
 Copy
 Edit
 GoFlowMail/
-
 │
-├── client/ 
-# React Frontend
+├── client/                  # React Frontend
 │   ├── src/
-│   │   ├── components/  # Pages and UI components
-│   │   ├── context/     # Auth & global state
-│   │   └── App.jsx
+│   │   ├── components/      # Pages and UI Components
+│   │   ├── context/         # Global state (auth, user)
+│   │   └── App.jsx          # Routing & Layout
 │   └── vite.config.js
 │
-├── server/              # Express Backend
-│   ├── Models/          # Mongoose user schema
-│   └── index.js
+├── server/                  # Express Backend
+│   ├── Models/              # Mongoose User Schema
+│   └── index.js             # Express App Entry Point
 │
-├── RAG.ipynb            # Bonus AI notebook
-└── 3rd presentation.pdf # Project presentation slides
-🧑‍💻 Contributors
-Rohan Garg – Full-stack dev, system architecture
+├── RAG.ipynb                # Bonus: Retrieval-Augmented Generation Notebook
+└── 3rd presentation.pdf     # Team presentation slides
+```
+👥 Contributors
 
-Mishra Mukul – Frontend features, UI logic
+Rohan Garg – Frontend Logic, Gemini AI setup 
 
-Robin – Chat integration & Gemini setup
+Mishra Mukul – Frontend logic, UI Ideas
+
+Robin – Backend-Chat assistant integration, Authentication, architecture & integration
+
+Suryansh Dixit- Backend-Chat assistant integration, Authentication, architecture & integration
+
+Rudra Gupta- Gemini AI Setup , will implement RAG model in future
 
 🔭 Future Scope
-Email backend with SMTP & database
+📧 Real Email Backend (SMTP / Nodemailer)
 
-Profile settings page
+💾 Persistent Email History (MongoDB)
 
-Persistent message history
+⚙ Profile Settings Page
 
-OAuth login (Google)
+🌑 Dark Mode Toggle
 
-Dark mode theme
+🔐 OAuth Login (Google/GitHub)
 
-Deploy on Vercel/Render
+🚀 Deployment on Vercel / Render / Railway
+
+🧠 Enhance Gemini Assistant with Document RAG
+
+✅ Add Unit Tests and Error Boundaries
 
 📝 License
-This project does not currently include a license. For collaboration or usage, please contact the authors.
+This project is not licensed for public use by default. For reuse, demo, or collaboration, please contact the project authors.
 
+Thanks for checking out Go Flow Mail!
